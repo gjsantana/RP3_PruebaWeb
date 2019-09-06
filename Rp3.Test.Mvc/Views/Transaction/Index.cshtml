@@ -1,0 +1,169 @@
+﻿@model Rp3.Test.Mvc.Models.TransactionEditModel
+@{
+    ViewBag.Title = "Home Page";
+    ViewBag.PersonId = Rp3.Test.Mvc.Controllers.PersonController.PersonId;
+}
+<div class="jumbotron">
+    <h1>Mis Transacciones</h1>
+    <p class="lead">Registro de Ingresos y Gastos</p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicionTransaccion">Nuevo</button>
+</div>
+<div class="row">
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Categoría</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Valor</th>
+                <th>Notas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Transactions)
+            {
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edicionTransaccion"
+                                data-id="@item.TransactionId"
+                                data-registerdate="@item.RegisterDate "
+                                data-category="@item.CategoryId"
+                                data-transactiontype="@item.TransactionTypeId"
+                                data-shortdescription="@item.ShortDescription"
+                                data-amount="@item.Amount"
+                                data-notes="@item.Notes">
+                            Editar
+                        </button>
+                    </td>
+                    <td>
+                        @item.TransactionId
+                    </td>
+                    <td>
+                        @string.Format("{0:dd/MM/yyyy}", item.RegisterDate)
+                    </td>
+                    <td>
+                        @item.CategoryName
+                    </td>
+                    <td>
+                        @item.TransactionType
+                    </td>
+                    <td>
+                        @item.ShortDescription
+                    </td>
+                    <td>
+                        @string.Format("{0:c2}", item.Amount)
+                    </td>
+                    <td>
+                        @item.Notes
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@if (ViewBag.PersonId == null)
+{
+    <div class="alert alert-warning text-center" role="alert">
+        <p>Seleccione una persona.</p>
+    </div>
+}
+
+<div class="modal fade" id="edicionTransaccion" tabindex="-1" role="dialog" aria-labelledby="edicionTransaccionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="editarModalLabel">Transacción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div asp-validation-summary="All"></div>
+            @using (Html.BeginForm("Index", "Transaction", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group" id="formGroupId">
+                        @Html.LabelFor(m => m.TransactionId, htmlAttributes: new { @class = "col-form-label" }):<br />
+                        @Html.EditorFor(m => m.TransactionId, new { maxlength = 5, @class = "form-control", @placeholder = "Id de la transacción", disabled = true })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.RegisterDate, htmlAttributes: new { @class = "col-form-label" }):<br />
+                        @Html.EditorFor(m => m.RegisterDate, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RegisterDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CategoryId, htmlAttributes: new { @class = "col-form-label" }):<br />
+                        @Html.DropDownListFor(m=>m.CategoryId,new SelectList(ViewBag.Categories, "CategoryId", "Name"), "Seleccionar",
+                           new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.TransactionTypeId, htmlAttributes: new { @class = "col-form-label" }):<br />
+                        @Html.DropDownListFor(m=>m.TransactionTypeId,new SelectList(ViewBag.TransactionTypes, "TransactionTypeId", "Name"), "Seleccionar",
+                           new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TransactionTypeId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ShortDescription, htmlAttributes: new { @class = "col-form-label" }):<br />
+                        @Html.EditorFor(m => m.ShortDescription, new { @class = "form-control", @placeholder = "Descripción", id = "modal-shortDescription" })
+                        @Html.ValidationMessageFor(m => m.ShortDescription, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Amount, htmlAttributes: new { @class = "col-form-label" }) ($):<br />
+                        @Html.EditorFor(m => m.Amount, new { @class = "form-control", @placeholder = "Valor", id = "modal-amount" })
+                        @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Notes, htmlAttributes: new { @class = "col-form-label" }):<br />
+                        @Html.EditorFor(m => m.Notes, new { @class = "form-control", @placeholder = "Nota", id = "modal-notes" })
+                    </div>
+                </div>
+                <div class="modal-footer">                    
+                    <button type="submit" class="btn btn-primary" id="btnAccion"></button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $('#edicionTransaccion').on('show.bs.modal', function (event) {
+        let eventoButton = $(event.relatedTarget);
+        let id = eventoButton.data('id');
+        let categoryName = eventoButton.data('category');
+        let registerDate = eventoButton.data('registerdate');
+        let transactionType = eventoButton.data('transactiontype');
+        let shortDescription = eventoButton.data('shortdescription');
+        let amount = (eventoButton.data('amount') != null) ? parseFloat(eventoButton.data('amount')).toFixed(2) : '0,00';        
+        let notes = eventoButton.data('notes');
+        let modal = $(this);
+        if (id != null) {
+            modal.find('#TransactionId').val(id);
+            modal.find('#TransactionId').prop("readonly", true);
+            $("#formGroupId").show();
+            $('#btnAccion')[0].innerText = "Actualizar";
+        }
+        else {
+            $("#formGroupId").hide();
+            $('#btnAccion')[0].innerText = "Crear";
+        }
+        if (registerDate != null) {
+            let data = (registerDate.split(' '))[0].split('/');
+            let year = data[2];
+            let month = (data[1].length > 1) ? data[1] : "0" + data[1];
+            let day = (data[0].length > 1) ? data[0] : "0" + data[0];
+            modal.find('#RegisterDate').val(`${year}-${month}-${day}`);
+        }
+        else {
+            modal.find('#RegisterDate').val("");
+        }
+        modal.find('#CategoryId').val(categoryName);
+        modal.find('#TransactionTypeId').val(transactionType);
+        modal.find('#ShortDescription').val(shortDescription);
+        modal.find('#ShortDescription')[0].style.width = "90%";
+        modal.find('#Amount').val(String(amount).replace('.', ','));        
+        modal.find('#Notes').val(notes);
+        modal.find('#Notes')[0].style.width = "90%";
+    });
+</script>

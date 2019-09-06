@@ -1,0 +1,5 @@
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Common\bin\Debug\Rp3.Test.Common.dll
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Common\bin\Debug\Rp3.Test.Common.pdb
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Common\obj\Debug\Rp3.Test.Common.csproj.CoreCompileInputs.cache
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Common\obj\Debug\Rp3.Test.Common.dll
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Common\obj\Debug\Rp3.Test.Common.pdb

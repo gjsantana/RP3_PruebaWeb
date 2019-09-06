@@ -1,0 +1,14 @@
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\Rp3.Test.Data.dll.config
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\Rp3.Test.Data.dll
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\Rp3.Test.Data.pdb
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\EntityFramework.dll
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\Newtonsoft.Json.dll
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\EntityFramework.xml
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\bin\Debug\Newtonsoft.Json.xml
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\obj\Debug\Rp3.Test.Data.csproj.CoreCompileInputs.cache
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\obj\Debug\Rp3.Test.Data.csproj.CopyComplete
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\obj\Debug\Rp3.Test.Data.dll
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\obj\Debug\Rp3.Test.Data.pdb
+E:\Geovanny\RP3\rp3.web.test-master\Rp3.Test.Data\obj\Debug\Rp3.Test.Data.csprojAssemblyReference.cache

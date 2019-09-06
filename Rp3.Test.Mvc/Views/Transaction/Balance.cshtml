@@ -1,0 +1,50 @@
+﻿@model List<Rp3.Test.Common.Models.BalanceView>
+@{
+    ViewBag.Title = "Balance";
+    ViewBag.PersonId = Rp3.Test.Mvc.Controllers.PersonController.PersonId;
+}
+
+<div class="jumbotron">
+    <h1>Balance</h1>
+    <p class="lead">Resumen por Categoría</p>
+</div>
+<div class="row">
+    <table style="width:50%">
+        <thead>
+            <tr>
+                <th width="100px"><strong>CATEGORÍA</strong></th>
+                <th width="100px"><strong>SALDO</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Category
+                    </td>
+                    <td>
+                        @string.Format("{0:c2}", item.Amount)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <strong>TOTAL</strong>
+                </td>
+                <td>
+                    @if (ViewBag.Total != null)
+                    {
+                        <strong>@string.Format("{0:c2}", @ViewBag.Total)</strong>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@if (ViewBag.PersonId == null)
+{
+    <div class="alert alert-warning text-center" role="alert">
+        <p>Primero debe seleccionar una persona para revisar su balance.</p>
+    </div>
+}

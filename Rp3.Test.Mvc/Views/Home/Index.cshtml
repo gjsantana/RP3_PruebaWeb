@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    ViewBag.PersonId = Rp3.Test.Mvc.Controllers.PersonController.PersonId;
+}
+
+<div class="jumbotron">
+    <h1>Balance</h1>
+    <p class="lead">Bitácora de mis Ingresos y Gastos</p>    
+</div>
+
+<div class="row">
+        <div class="col-md-4">
+            <h2>Resumen</h2>
+            <p>
+                Ver el Resumen de mi Balance
+            </p>
+            @if (ViewBag.PersonId != null)
+            {
+                <p><a class="btn btn-default" href="@Url.Action("Balance", "Transaction")">Ir a Balance</a></p>
+            }
+            else
+            {
+                <div class="alert alert-warning h-25 text-center" role="alert">
+                    <p>Seleccione una persona</p>
+                </div>
+            }
+        </div>
+
+        <div class="col-md-4">
+                <h2>Registrar</h2>
+                <p>
+                    Revise su Balance e ingrese nuevas Transacciones
+                </p>
+                @if (ViewBag.PersonId != null)
+                {
+                    <p><a class="btn btn-default" href="@Url.Action("Index", "Transaction")">Ir a Registrar</a></p>
+                }
+                else
+                {
+                    <div class="alert alert-warning h-25 text-center" role="alert">
+                        <p>Seleccione una persona</p>
+                    </div>
+                }
+         </div>
+        <div class="col-md-4">
+            <h2>Categorías</h2>
+            <p>Agregue o revise los Rubros Disponibles</p>
+            <p><a class="btn btn-default" href="@Url.Action("Index","Category")">Ir a Categorías</a></p>
+        </div>
+    </div>
+</div>
