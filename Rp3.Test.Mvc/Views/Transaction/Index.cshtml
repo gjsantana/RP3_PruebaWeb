@@ -111,7 +111,7 @@
                         @Html.ValidationMessageFor(m => m.ShortDescription, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Amount, htmlAttributes: new { @class = "col-form-label" }) ($):<br />
+                        @Html.LabelFor(m => m.Amount, htmlAttributes: new { @class = "col-form-label" }) $:<br />
                         @Html.EditorFor(m => m.Amount, new { @class = "form-control", @placeholder = "Valor", id = "modal-amount" })
                         @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
                     </div>
@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">                    
-                    <button type="submit" class="btn btn-primary" id="btnAccion"></button>
+                    <button type="submit" class="btn btn-primary" id="btnAccion" onclick="valida();"></button>
                 </div>
             }
         </div>
@@ -135,7 +135,7 @@
         let registerDate = eventoButton.data('registerdate');
         let transactionType = eventoButton.data('transactiontype');
         let shortDescription = eventoButton.data('shortdescription');
-        let amount = (eventoButton.data('amount') != null) ? parseFloat(eventoButton.data('amount')).toFixed(2) : '0,00';        
+        let amount = (eventoButton.data('amount') != null) ? parseFloat(eventoButton.data('amount')).toFixed(2) : '';        
         let notes = eventoButton.data('notes');
         let modal = $(this);
         if (id != null) {

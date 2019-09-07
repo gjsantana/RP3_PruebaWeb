@@ -27,8 +27,8 @@
         </div>
     </div>
     <div class="container body-content">
-        <br/>
-        @Html.Action("PersonSelection", "Person")        
+        <br />
+        @Html.Action("PersonSelection", "Person")
         @RenderBody()
         <hr />
         <footer>
@@ -38,6 +38,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         $.validator.unobtrusive.adapters.addSingleVal("customdaterange", "min");
         $.validator.addMethod("customdaterange", function (value, element, min) {

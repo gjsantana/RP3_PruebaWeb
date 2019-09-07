@@ -15,6 +15,7 @@ namespace Rp3.Test.Mvc.Models
         [Display(Prompt = "Tipo de transacción", Name = "Tipo de transacción")]
         public short TransactionTypeId { get; set; }
 
+        [Required(ErrorMessage = "El campo categoría es obligatorio")]
         [Display(Prompt = "Categoría", Name = "Categoría")]
         public int CategoryId { get; set; }
 
